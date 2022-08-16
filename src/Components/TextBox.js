@@ -5,6 +5,17 @@ export default function TextBox(props) {
     // text = "new"; // wrong way to change state variable
     // setText("New text"); // correct way to change state variable
 
+    const showFile = (e) => {
+        e.preventDefault();
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const txt = e.target.result;
+          console.log(txt);
+          setText(txt);
+        };
+        reader.readAsText(e.target.files[0]);
+      };
+
     const onUpClick = () => {
         // console.log("on UpperCase clicked ---", text);
         let result = text.toUpperCase();
@@ -28,12 +39,26 @@ export default function TextBox(props) {
         // // const { spawn } = require('child_process');
         // // const childPython = spawn('python', ['--version']);
         // const fs = require("fs");
-        // let fileName = prompt("Enter file name", "file");
         // fileName += ".txt";
         // fileName = "C:\\Users\\sanmeet\\Downloads\\" + fileName;
         // fs.open(fileName, "w");
         // fs.writeFile(fileName, text);
         // fs.close();
+        
+        let fileName = prompt("Enter file name", "file");
+        // let filename = "readme.txt";
+        // let text = "Text of the file goes here.\n1";
+        let blob = new Blob([text], {type:'text/plain'});
+        let link = document.createElement("a");
+        link.download = fileName;
+        //link.innerHTML = "Download File";
+        link.href = window.URL.createObjectURL(blob);
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(link.href);
+        }, 100);
     }
     const onFindReplaceClick = () => {
         let partToChange = prompt("Find:");
@@ -77,12 +102,15 @@ export default function TextBox(props) {
             <div className="my-3">
                 <textarea className="form-control" id="text-box" rows="7" value={text} onChange={onChangeClick} placeholder="Enter text here..."></textarea>
             </div>
+            <div className="my-2">
+                <h5>or Upload Text File</h5>
+                <input type="file" onChange={showFile} />
+            </div>
             <button className="btn btn-primary mx-2" onClick={onUpClick}>Convert to Uppercase</button>
             <button className="btn btn-primary mx-2" onClick={onLowClick}>Convert to Lowercase</button>
-            <button className="btn btn-danger mx-2" onClick={onClearClick}>Clear Text</button>
-            {/* <button className="btn glyphicon glyphicon-download-alt">Download</button> */}
-            <button className="btn btn-primary mx-2" onClick={onDownloadClick}>Download <i className="fa fa-download"></i></button>
             <button className="btn btn-primary mx-2" onClick={onFindReplaceClick}>Find and Replace</button>
+            <button className="btn btn-primary mx-2" onClick={onDownloadClick}>Download <i className="fa fa-download"></i></button>
+            <button className="btn btn-danger mx-2" onClick={onClearClick}>Clear Text</button>
         </div>
         <div className="container my-3">
             <h4>Text Summary:</h4>
