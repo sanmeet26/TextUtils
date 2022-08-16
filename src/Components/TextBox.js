@@ -10,12 +10,19 @@ export default function TextBox(props) {
         const reader = new FileReader();
         reader.onload = (e) => {
           const txt = e.target.result;
-          console.log(txt);
+        //   console.log(txt);
           setText(txt);
         };
         reader.readAsText(e.target.files[0]);
       };
 
+    const onSentenceClick = () => {
+        let result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,function(c){return c.toUpperCase()});
+        // console.log("on UpperCase clicked ---", text);
+        // let result = text.toUpperCase();
+        result = result.replaceAll(" i ", " I ");
+        setText(result);
+    }
     const onUpClick = () => {
         // console.log("on UpperCase clicked ---", text);
         let result = text.toUpperCase();
@@ -59,6 +66,11 @@ export default function TextBox(props) {
             document.body.removeChild(link);
             window.URL.revokeObjectURL(link.href);
         }, 100);
+    }
+    const onCopyClick = () => {
+        let tBox = document.getElementById("text-box");
+        tBox.select();
+        navigator.clipboard.writeText(tBox.value);
     }
     const onFindReplaceClick = () => {
         let partToChange = prompt("Find:");
@@ -106,10 +118,12 @@ export default function TextBox(props) {
                 <h5>or Upload Text File</h5>
                 <input type="file" onChange={showFile} />
             </div>
-            <button className="btn btn-primary mx-2" onClick={onUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-primary mx-2" onClick={onLowClick}>Convert to Lowercase</button>
+            <button className="btn btn-primary mx-2" onClick={onSentenceClick}>Convert to SentenceCase</button>
+            <button className="btn btn-primary mx-2" onClick={onUpClick}>Convert to UpperCase</button>
+            <button className="btn btn-primary mx-2" onClick={onLowClick}>Convert to LowerCase</button>
             <button className="btn btn-primary mx-2" onClick={onFindReplaceClick}>Find and Replace</button>
             <button className="btn btn-primary mx-2" onClick={onDownloadClick}>Download <i className="fa fa-download"></i></button>
+            <button className="btn btn-primary mx-2" onClick={onCopyClick}>Copy Text</button>
             <button className="btn btn-danger mx-2" onClick={onClearClick}>Clear Text</button>
         </div>
         <div className="container my-3">

@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './Components/Navbar';
 import TextBox from './Components/TextBox';
+// import About from './Components/About';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     {/* <Navbar title="TextUtils" /> */}
     {/* <Navbar /> */}
     <TextBox heading="Enter the text below to analyze:"/>
+    {/* <About /> */}
     </>
   );
 }
