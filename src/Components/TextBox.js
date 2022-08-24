@@ -71,6 +71,7 @@ export default function TextBox(props) {
         let tBox = document.getElementById("text-box");
         tBox.select();
         navigator.clipboard.writeText(tBox.value);
+        props.showAlert("Text copied!", "success");
     }
     const onFindReplaceClick = () => {
         let partToChange = prompt("Find:");
