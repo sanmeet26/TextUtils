@@ -110,7 +110,7 @@ export default function TextBox(props) {
 
     return (
         <>
-        <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
+        <div className="container my-3" style={{color:props.mode==='light' || props.mode==='yellow'?'black':'white'}}>
             <h1>{props.heading}</h1>
             <div className="my-3">
                 <textarea className="form-control" id="text-box" rows="7" value={text} onChange={onChangeClick} placeholder="Enter text here..."></textarea>
@@ -119,15 +119,15 @@ export default function TextBox(props) {
                 <h5>or Upload Text File</h5>
                 <input type="file" onChange={showFile} />
             </div>
-            <button className="btn btn-primary mx-2 my-2" onClick={onSentenceClick}>Convert to SentenceCase</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={onUpClick}>Convert to UpperCase</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={onLowClick}>Convert to LowerCase</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={onFindReplaceClick}>Find and Replace</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={onDownloadClick}>Download <i className="fa fa-download"></i></button>
-            <button className="btn btn-primary mx-2 my-2" onClick={onCopyClick}>Copy Text</button>
+            <button className={`btn btn-${props.btn} mx-2 my-2`} onClick={onSentenceClick}>Convert to SentenceCase</button>
+            <button className={`btn btn-${props.btn} mx-2 my-2`} onClick={onUpClick}>Convert to UpperCase</button>
+            <button className={`btn btn-${props.btn} mx-2 my-2`} onClick={onLowClick}>Convert to LowerCase</button>
+            <button className={`btn btn-${props.btn} mx-2 my-2`} onClick={onFindReplaceClick}>Find and Replace</button>
+            <button className={`btn btn-${props.btn} mx-2 my-2`} onClick={onDownloadClick}>Download <i className="fa fa-download"></i></button>
+            <button className={`btn btn-${props.btn} mx-2 my-2`} onClick={onCopyClick}>Copy Text</button>
             <button className="btn btn-danger mx-2 my-2" onClick={onClearClick}>Clear Text</button>
         </div>
-        <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
+        <div className="container my-3" style={{color:props.mode==='light' || props.mode==='yellow'?'black':'white'}}>
             <h4>Text Summary:</h4>
             <p>{getTextWordCount()} words, {text.length} characters</p>
             <p>{getTextWordCount() * 0.008} minutes read</p>
