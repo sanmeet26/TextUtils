@@ -17,6 +17,14 @@ export default function Navbar(props) {
       return props.greenTheme;
   }
 
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+
   return (
     <nav className={`navbar navbar-expand-lg`} style={getMode(props.mode)}>
       <div className="container-fluid">
@@ -56,11 +64,13 @@ export default function Navbar(props) {
             {/* <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode}/>
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{props.mode==='light'?"Enable Dark Mode":"Enable Light Mode"}</label> */}
             <span className="mx-2" style={{color:getMode(props.mode).color}}>Select Theme</span>
-            <button className="btn btn-secondary mx-1" onClick={props.changeToLightTheme}>L</button>
-            <button className="btn btn-dark mx-1" onClick={props.changeToDarkTheme}>D</button>
-            <button className="btn btn-primary mx-1" onClick={props.changeToBlueTheme}>B</button>
-            <button className="btn btn-warning mx-1" onClick={props.changeToYellowTheme}>Y</button>
-            <button className="btn btn-success mx-1" onClick={props.changeToGreenTheme}>G</button>
+            <div style={getWindowDimensions().width < 425 ? {display: 'block'} : {display: 'inline'}}>
+              <button className="btn btn-secondary mx-1" onClick={props.changeToLightTheme}>L</button>
+              <button className="btn btn-dark mx-1" onClick={props.changeToDarkTheme}>D</button>
+              <button className="btn btn-primary mx-1" onClick={props.changeToBlueTheme}>B</button>
+              <button className="btn btn-warning mx-1" onClick={props.changeToYellowTheme}>Y</button>
+              <button className="btn btn-success mx-1" onClick={props.changeToGreenTheme}>G</button>
+            </div>
           </div>
 
         </div>
