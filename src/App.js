@@ -2,13 +2,13 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import TextBox from './Components/TextBox';
 import Alert from './Components/Alert';
-import About from './Components/About';
+// import About from './Components/About';
 import React, {useState} from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route
+// } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -91,22 +91,22 @@ function App() {
 
   return (
     <>
-    <Router>
+    {/* <Router> */}
     {/* <Navbar title="TextUtils" nav1="Home" nav2="About" mode={mode} toggleMode={toggleMode} /> */}
     <Navbar title="TextUtils" nav1="Home" nav2="About" mode={mode} lightTheme={lightTheme} darkTheme={darkTheme} blueTheme={blueTheme} yellowTheme={yellowTheme} greenTheme={greenTheme} changeToLightTheme={changeToLightTheme} changeToDarkTheme={changeToDarkTheme} changeToBlueTheme={changeToBlueTheme} changeToYellowTheme={changeToYellowTheme} changeToGreenTheme={changeToGreenTheme} />
     {/* <Navbar title="TextUtils" /> */}
     {/* <Navbar /> */}
 
     <Alert alert={alert}/>
-    <Routes>
+    {/* <Routes>
       <Route exact path='/' element={<TextBox heading="Enter the text below to analyze:" mode={mode} showAlert={showAlert} btn={mode==='light'?"secondary":"dark"} />} />
       <Route exact path='/about' element={<About />} />
     </Routes>
+    </Router> */}
 
 
-    {/* <TextBox heading="Enter the text below to analyze:" mode={mode} showAlert={showAlert} btn={mode==='light'?"secondary":"dark"} /> */}
+    <TextBox heading="Enter the text below to analyze:" mode={mode} showAlert={showAlert} btn={mode==='light'?"secondary":"dark"} />
     {/* <About /> */}
-    </Router>
     </>
   );
 }
