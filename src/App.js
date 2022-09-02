@@ -64,29 +64,29 @@ function App() {
   const changeToLightTheme = () => {
     setMode('light');
     document.body.style.backgroundColor = 'white';
-    document.title = "TextUtils - Light theme";
+    // document.title = "TextUtils - Light theme";
   }
   const changeToDarkTheme = () => {
     setMode('dark');
     document.body.style.backgroundColor = '#040404';
-    document.title = "TextUtils - Dark theme";
+    // document.title = "TextUtils - Dark theme";
   }
   const changeToBlueTheme = () => {
     setMode('blue');
 
     document.body.style.color = 'white';
     document.body.style.backgroundColor = '#202487';
-    document.title = "TextUtils - Blue theme";
+    // document.title = "TextUtils - Blue theme";
   }
   const changeToYellowTheme = () => {
     setMode('yellow');
     document.body.style.backgroundColor = '#b09c1a';
-    document.title = "TextUtils - Yellow theme";
+    // document.title = "TextUtils - Yellow theme";
   }
   const changeToGreenTheme = () => {
     setMode('green');
     document.body.style.backgroundColor = '#44853d';
-    document.title = "TextUtils - Green theme";
+    // document.title = "TextUtils - Green theme";
   }
 
   return (

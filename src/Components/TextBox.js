@@ -17,21 +17,36 @@ export default function TextBox(props) {
       };
 
     const onSentenceClick = () => {
-        let result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,function(c){return c.toUpperCase()});
-        // console.log("on UpperCase clicked ---", text);
-        // let result = text.toUpperCase();
-        result = result.replaceAll(" i ", " I ");
-        setText(result);
+        if(text === "") {
+            props.showAlert("Text not entered!!", "warning");
+        }
+        else {
+            let result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g,function(c){return c.toUpperCase()});
+            // console.log("on UpperCase clicked ---", text);
+            // let result = text.toUpperCase();
+            result = result.replaceAll(" i ", " I ");
+            setText(result);
+        }
     }
     const onUpClick = () => {
-        // console.log("on UpperCase clicked ---", text);
-        let result = text.toUpperCase();
-        setText(result);
+        if(text === "") {
+            props.showAlert("Text not entered!!", "warning");
+        }
+        else {
+            // console.log("on UpperCase clicked ---", text);
+            let result = text.toUpperCase();
+            setText(result);
+        }
     }
     const onLowClick = () => {
-        // console.log("on UpperCase clicked ---", text);
-        let result = text.toLowerCase();
-        setText(result);
+        if(text === "") {
+            props.showAlert("Text not entered!!", "warning");
+        }
+        else {
+            // console.log("on UpperCase clicked ---", text);
+            let result = text.toLowerCase();
+            setText(result);
+        }
     }
     const onChangeClick = (event) => {
         // console.log("on Change clicked");
@@ -42,51 +57,66 @@ export default function TextBox(props) {
         setText("");
     }
     const onDownloadClick = () => {
-        console.log("File Download clicked");
-        // // const { spawn } = require('child_process');
-        // // const childPython = spawn('python', ['--version']);
-        // const fs = require("fs");
-        // fileName += ".txt";
-        // fileName = "C:\\Users\\sanmeet\\Downloads\\" + fileName;
-        // fs.open(fileName, "w");
-        // fs.writeFile(fileName, text);
-        // fs.close();
-        
-        let fileName = prompt("Enter file name", "file");
-        // let filename = "readme.txt";
-        // let text = "Text of the file goes here.\n1";
-        let blob = new Blob([text], {type:'text/plain'});
-        let link = document.createElement("a");
-        link.download = fileName;
-        //link.innerHTML = "Download File";
-        link.href = window.URL.createObjectURL(blob);
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(link.href);
-        }, 100);
-    }
-    const onCopyClick = () => {
-        let tBox = document.getElementById("text-box");
-        tBox.select();
-        navigator.clipboard.writeText(tBox.value);
-        props.showAlert("Text copied!", "success");
-    }
-    const onFindReplaceClick = () => {
-        let partToChange = prompt("Find:");
-        let changeWith = prompt("Replace with:");
-        const isReplaceAll = window.confirm("Do you want to replace all occurences?");
-
-        // console.log(partToChange);
-        // console.log(changeWith);
-        // console.log(isReplaceAll);
-
-        if(isReplaceAll) {
-            setText(text.replaceAll(partToChange, changeWith));
+        if(text === "") {
+            props.showAlert("Text not entered!!", "warning");
         }
         else {
-            setText(text.replace(partToChange, changeWith));
+            console.log("File Download clicked");
+            // // const { spawn } = require('child_process');
+            // // const childPython = spawn('python', ['--version']);
+            // const fs = require("fs");
+            // fileName += ".txt";
+            // fileName = "C:\\Users\\sanmeet\\Downloads\\" + fileName;
+            // fs.open(fileName, "w");
+            // fs.writeFile(fileName, text);
+            // fs.close();
+            
+            let fileName = prompt("Enter file name", "file");
+            // let filename = "readme.txt";
+            // let text = "Text of the file goes here.\n1";
+            let blob = new Blob([text], {type:'text/plain'});
+            let link = document.createElement("a");
+            link.download = fileName;
+            //link.innerHTML = "Download File";
+            link.href = window.URL.createObjectURL(blob);
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(link.href);
+            }, 100);
+        }
+    }
+    const onCopyClick = () => {
+        if(text === "") {
+            props.showAlert("Text not entered!!", "warning");
+        }
+        else {
+            let tBox = document.getElementById("text-box");
+            tBox.select();
+            navigator.clipboard.writeText(tBox.value);
+            props.showAlert("Text copied!", "success");
+        }
+    }
+    const onFindReplaceClick = () => {
+        if(text === "") {
+            props.showAlert("Text not entered!!", "warning");
+        }
+        else {
+            let partToChange = prompt("Find:");
+            let changeWith = prompt("Replace with:");
+            const isReplaceAll = window.confirm("Do you want to replace all occurences?");
+    
+            // console.log(partToChange);
+            // console.log(changeWith);
+            // console.log(isReplaceAll);
+    
+            if(isReplaceAll) {
+                setText(text.replaceAll(partToChange, changeWith));
+            }
+            else {
+                setText(text.replace(partToChange, changeWith));
+            }
         }
     }
 
