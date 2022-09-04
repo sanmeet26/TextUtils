@@ -1,5 +1,6 @@
 # TextUtils
-This is a simple web application developed in react where we can manipulate text.
+This is a simple web application developed in react where we can manipulate text.<br>
+Check out its usage here : [https://sanmeetgit.github.io/TextUtils/](https://sanmeetgit.github.io/TextUtils/)
 
 ## Utilities
 1. Convert text to Sentencecase
