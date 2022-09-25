@@ -16,6 +16,8 @@ Check out its usage here : [https://sanmeetgit.github.io/TextUtils/](https://san
 
 Different Color themes implemented (Light, Dark, Blue, Yellow, Green)
 
+<img width="960" alt="textUtils" src="https://user-images.githubusercontent.com/69712864/192157240-d38f1b23-0b4f-405b-965f-d30f30cb49e9.png">
+
 ## Run Project
 
 In the project directory, you can run:
